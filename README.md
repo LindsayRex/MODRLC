@@ -77,10 +77,10 @@ Two advanced controller interfaces are currently available for the ACTB.
 
 ## Test cases
 
-Testcases are found in the ``/testcases`` directory. Example controllers to go with these test cases are found under the ``/examples`` directory.
+Testcases are found in the ``/boptest-service/boptest/testcases`` directory. Example controllers to go with these test cases are found under the ``/examples`` directory.
 
 For the moment, one Spawn test case is available. It represents the U.S. Department of Energy's Small Office Building.
-It is provided with a documentation, found under ``/testcases/spawnrefsmalloffice/docs``.
+It is provided with a documentation, found under ``/boptest-service/boptest/testcases/spawnrefsmalloffice/docs``.
 
 ![Animation of the ACTB test case](docs/figures/ACTBdemo.gif)
 
@@ -92,17 +92,12 @@ Currently, the ACTB has some issues that we are aware of and are working towards
 and start it again. This will be fxed
 
 ## Structure
-- ``/testcases`` contains Spawn of EnergyPlus test cases, including docs, models, and configuration settings.
+- ``/boptest-service`` contains a copy of the [`boptest-service` repo](https://github.com/NREL/boptest-service).
+    - ``/boptest-service/boptest/testcases`` contains Spawn of EnergyPlus test cases, including docs, models, and configuration settings.
 - ``/examples`` contains examples of MPC and RLC Python controllers that interact with Spawn models.
 - ``/interfaces`` contains the clients for interfacing do-mpc and OpenAI Gym to the ACTB
 - ``/metamodeling`` contains prototype code for the metamodeling framework
-- ``/parsing`` contains prototype code for a script that parses a Modelica model using signal exchange blocks and outputs a wrapper FMU and KPI json.
-- ``/template`` contains template Modelica code for a test case emulator model.
-- ``/testing`` contains code for unit and functional testing of this software.  See the README there for more information about running these tests.
-- ``/data`` contains prototype code for generating and managing data associated with test cases.  This includes boundary conditions, such as weather, schedules, and energy prices, as well as a map of test case FMU outputs needed to calculate KPIs.
-- ``/forecast`` contains prototype code for returning boundary condition forecast, such as weather, schedules, and energy prices.
-- ``/kpis`` contains prototype code for calculating key performance indicators.
-- ``/docs`` contains design requirements and guide documentation.
+- ``/templates`` contains template Modelica code for a test case emulator model.
 
 ## Acknowledgements
 We gratefully acknowledge funding by the U.S. Department of Energy under Project 3.2.6.80, titled _Multi-Objective Deep Reinforcement Learning Controls_.
