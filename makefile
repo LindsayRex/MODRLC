@@ -1,9 +1,9 @@
 
 build:
-	docker-compose build
+	(cd boptest-service && docker-compose build)
 
 build-nocache:
-	docker-compose build --no-cache
+	(cd boptest-service && docker-compose build --no-cache)
 
 remove-image:
 	docker-compose rm -sf
@@ -11,29 +11,29 @@ remove-image:
 run-many :
 	$(MAKE) run-many-detached
 	$(MAKE) provision
-	docker-compose logs -f web worker
+	(cd boptest-service && docker-compose logs -f web worker)
 
 run :
 	$(MAKE) run-detached
 	$(MAKE) provision
-	docker-compose logs -f web worker
+	(cd boptest-service && docker-compose logs -f web worker)
 
 bash:
 	$(COMMAND_RUN) --detach=false ${IMG_NAME} /bin/bash -c "bash"
 
 run-detached:
-	docker-compose up -d web worker
+	(cd boptest-service && docker-compose up -d web worker)
 
 run-many-detached:
-	docker-compose up -d --scale worker=${NUM} web
+	(cd boptest-service && docker-compose up -d --scale worker=${NUM} web)
 
 provision:
-	docker-compose run --no-deps provision python3 -m boptest_submit ./testcases/${TESTCASE}
+	(cd boptest-service/provision && docker-compose run --no-deps provision python3 -m boptest_submit ../boptest/testcases/${TESTCASE})
 
 stop:
-	docker-compose down
+	(cd boptest-service && docker-compose down)
 
 compile_testcase:
-	(cd testing && make compile_testcase_model TESTCASE=${TESTCASE})
+	(cd boptest-service/boptest/testing && make compile_testcase_model TESTCASE=${TESTCASE})
 
 .PHONY: build run run-detached remove-image stop provision
