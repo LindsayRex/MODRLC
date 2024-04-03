@@ -27,8 +27,9 @@ run-detached:
 run-many-detached:
 	(cd boptest-service && docker-compose up -d --scale worker=${NUM} web)
 
+# Added the -p flag before the path argument ../boptest/testcases/${TESTCASE}. The -p flag is used to specify the path to the test case directory.
 provision:
-	(cd boptest-service/provision && docker-compose run --no-deps provision python3 -m boptest_submit ../boptest/testcases/${TESTCASE})
+	(cd boptest-service/provision && docker-compose run --no-deps provision python3 -m boptest_submit -p ../boptest/testcases/${TESTCASE})
 
 stop:
 	(cd boptest-service && docker-compose down)
